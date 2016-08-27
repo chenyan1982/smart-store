@@ -69,7 +69,7 @@ WORKDIR /home/${DOCKER_USER}/${APP_DIR}
 
 COPY . /home/${DOCKER_USER}/${APP_DIR}
 
-RUN chmod g+rwx /home/${DOCKER_USER}/${APP_DIR}
+RUN sudo chmod g+rwx /home/${DOCKER_USER}/${APP_DIR}
 
 # Set the user id
 USER ${DOCKER_USER}
