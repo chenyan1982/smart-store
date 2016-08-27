@@ -74,7 +74,7 @@ RUN sudo chmod g+rwx /home/${DOCKER_USER}/${APP_DIR}
 # Set the user id
 USER ${DOCKER_USER}
 
-RUN npm install
+RUN sudo npm install
 
 ENTRYPOINT ["/bin/bash"]
 
