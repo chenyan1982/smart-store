@@ -1,7 +1,7 @@
 {
-  "name": "spoke",
+  "name": "smart-store",
   "version": "1.0.0",
-  "description": "Spoke",
+  "description": "smart-store",
   "main": "src/server",
   "engines": {
     "node": "6.2.2",
@@ -13,7 +13,6 @@
     "lint": "eslint --fix --ext js --ext jsx src",
     "prod-build-client": "webpack --config ./webpack/config.js",
     "prod-build-server": "babel ./src -d $OUTPUT_DIR/server --source-maps",
-    "babel": "babel script.js",
     "prod-build": "npm run clean && npm run prod-build-client && npm run prod-build-server",
     "postinstall": "if [ \"$NODE_ENV\" = production ] ; then npm run prod-build ; fi",
     "start": "node $OUTPUT_DIR/server/server",
@@ -23,10 +22,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/saikat/react-apollo-starter-kit.git"
+    "url": "git+https://github.com/chenyan1982/smart-store.git"
   },
   "keywords": [
-    "spoke",
+    "smart-store",
     "sms",
     "texting",
     "campaigns",
@@ -36,12 +35,12 @@
     "organizing",
     "field"
   ],
-  "author": "Saikat Chakrabarti",
+  "author": "Calvin Chen",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/saikat/spoke/issues"
+    "url": "https://github.com/chenyan1982/smart-store/issues"
   },
-  "homepage": "https://github.com/saikat/saikat/spoke/#readme",
+  "homepage": "https://github.com/chenyan1982/smart-store/#readme",
   "dependencies": {
     "aphrodite": "^0.4.1",
     "apollo-client": "^0.3.29",
