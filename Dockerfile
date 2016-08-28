@@ -51,6 +51,8 @@ RUN ./configure
 RUN make
 RUN make install
 
+RUN npm install -g npm@3.7.3
+
 # Set the root password
 RUN echo "root:${ROOT_USER_PASSWORD}" | chpasswd
 
