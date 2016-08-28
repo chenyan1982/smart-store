@@ -46,7 +46,7 @@ RUN apt-get install -yq --no-install-recommends \
 				wget
 
 # Download node source package and install
-RUN https://nodejs.org/download/release/v5.9.1/node-v5.9.1-linux-x64.tar.gz
+RUN wget https://nodejs.org/download/release/v5.9.1/node-v5.9.1-linux-x64.tar.gz
 
 RUN tar zxvf node-v5.9.1-linux-x64.tar.gz \
 	&& rm -f node-v5.9.1-linux-x64.tar.gz
