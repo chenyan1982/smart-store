@@ -51,7 +51,7 @@ RUN wget https://nodejs.org/download/release/v5.9.1/node-v5.9.1-linux-x64.tar.gz
 RUN tar zxvf node-v5.9.1-linux-x64.tar.gz \
 	&& rm -f node-v5.9.1-linux-x64.tar.gz
 
-WORKDIR node-v5.9.1-linux-x64
+WORKDIR node-v5.9.1-linux-x64/lib/node_modules/npm
 
 RUN ./configure \
 	&& make install
