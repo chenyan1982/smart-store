@@ -42,16 +42,20 @@ RUN apt-get install -yq --no-install-recommends \
         make \
         python \
         adduser \
-	git
+				git \
+				wget
 
 # Download node source package and install
-RUN git clone --recursive git://github.com/nodejs/node.git
-WORKDIR /node
-RUN ./configure
-RUN make
-RUN make install
+RUN https://nodejs.org/download/release/v5.9.1/node-v5.9.1-linux-x64.tar.gz
 
-RUN npm install -g npm@3.7.3
+RUN tar zxvf node-v5.9.1-linux-x64.tar.gz \
+	&& rm -f node-v5.9.1-linux-x64.tar.gz
+
+WORKDIR node-v5.9.1-linux-x64
+
+RUN ./configure \
+	&& make install
+
 
 # Set the root password
 RUN echo "root:${ROOT_USER_PASSWORD}" | chpasswd
