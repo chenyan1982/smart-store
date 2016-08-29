@@ -88,27 +88,6 @@ USER ${DOCKER_USER}
 RUN npm install
 
 
-=======
-# Set the work directory to home dir of the root
-WORKDIR /home/${DOCKER_USER}/${APP_DIR}
-
-# Set the user id
-USER ${DOCKER_USER}
->>>>>>> parent of 55fadb9... docker build issue
-
-COPY . /home/${DOCKER_USER}/${APP_DIR}
-
-# RUN chmod -rwxr-xr-x /home/${DOCKER_USER}/${APP_DIR}
-
-
-
-RUN npm install
-
-
-
-
-
-
 
 ###############################################################################
 #                                    End                                      #
