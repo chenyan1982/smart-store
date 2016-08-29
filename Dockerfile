@@ -72,7 +72,7 @@ EXPOSE ${APP_PORT}
 
 COPY . /home/${DOCKER_USER}/${APP_DIR}
 
-RUN chown -R ${DOCKER_USER}:${DOCKER_USER} /home/${DOCKER_USER}/${APP_DIR}
+RUN chown -R ${DOCKER_USER}:${DOCKER_USER} /home/*
 
 # Set the user id
 USER ${DOCKER_USER}
