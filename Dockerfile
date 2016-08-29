@@ -70,19 +70,17 @@ VOLUME /home/${DOCKER_USER}
 
 EXPOSE ${APP_PORT}
 
+COPY . /home/${DOCKER_USER}/${APP_DIR}
+
+# RUN chown -R ${DOCKER_USER}:${DOCKER_USER} /home/${DOCKER_USER}/${APP_DIR}
+
 # Set the work directory to home dir of the root
 WORKDIR /home/${DOCKER_USER}/${APP_DIR}
 
+RUN npm install
+
 # Set the user id
 USER ${DOCKER_USER}
-
-COPY . /home/${DOCKER_USER}/${APP_DIR}
-
-# RUN chmod -rwxr-xr-x /home/${DOCKER_USER}/${APP_DIR}
-
-
-
-RUN npm install
 
 
 
