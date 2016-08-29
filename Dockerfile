@@ -70,19 +70,19 @@ VOLUME /home/${DOCKER_USER}
 
 EXPOSE ${APP_PORT}
 
-# Set the work directory to home dir of the root
-WORKDIR /home/${DOCKER_USER}/${APP_DIR}
-
 COPY . /home/${DOCKER_USER}/${APP_DIR}
 
-RUN sudo chmod g+rwx /home/${DOCKER_USER}/${APP_DIR}
+RUN sudo chmod -rwxr-xr-x /home/${DOCKER_USER}/${APP_DIR}
+
+# Set the work directory to home dir of the root
+WORKDIR /home/${DOCKER_USER}/${APP_DIR}
 
 RUN npm install
 
 # Set the user id
-USER ${DOCKER_USER}
+#USER ${DOCKER_USER}
 
-ENTRYPOINT ["/bin/bash"]
+
 
 ###############################################################################
 #                                    End                                      #
