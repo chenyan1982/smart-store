@@ -61,17 +61,17 @@ RUN ./configure \
 RUN echo "root:${ROOT_USER_PASSWORD}" | chpasswd
 
 # Create new user called define by DOCKER_USER environment variable
-RUN useradd --user-group --create-home --shell /bin/false ${DOCKER_USER}
+RUN useradd --user-group --create-home --shell /bin/false inlay
 
 VOLUME /home/${DOCKER_USER}
 
 EXPOSE ${APP_PORT}
 
-COPY package.json npm-shrinkwrap.json /home/${DOCKER_USER}/
-RUN chown -R ${DOCKER_USER}:${DOCKER_USER} /home/*
+COPY package.json npm-shrinkwrap.json /home/inlay/
+RUN chown -R inlay:inlay /home/*
 
-USER ${DOCKER_USER}
-WORKDIR /home/${DOCKER_USER}
+USER inlay
+WORKDIR /home/inlay
 RUN npm install
 
 
