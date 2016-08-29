@@ -72,7 +72,7 @@ EXPOSE ${APP_PORT}
 
 COPY . /home/${DOCKER_USER}/${APP_DIR}
 
-# RUN chown -R ${DOCKER_USER}:${DOCKER_USER} /home/${DOCKER_USER}/${APP_DIR}
+RUN chown -R ${DOCKER_USER}:${DOCKER_USER} /home/${DOCKER_USER}/${APP_DIR}
 
 # Set the work directory to home dir of the root
 WORKDIR /home/${DOCKER_USER}/${APP_DIR}
