@@ -67,7 +67,7 @@ VOLUME /home/${DOCKER_USER}
 
 EXPOSE ${APP_PORT}
 
-COPY package.json npm-shrinkwrap.json $HOME/${DOCKER_USER}/${APP_DIR}
+COPY package.json npm-shrinkwrap.json $HOME/${DOCKER_USER}/${APP_DIR}/
 
 RUN chown -R ${DOCKER_USER}:${DOCKER_USER} /home/*
 
