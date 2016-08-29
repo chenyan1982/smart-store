@@ -75,9 +75,11 @@ EXPOSE ${APP_PORT}
 
 
 COPY package.json /package.json
+
 COPY npm-shrinkwrap.json /npm-shrinkwrap.json
 
 RUN chmod +x /package.json
+
 RUN chmod +x /npm-shrinkwrap.json
 
 # Set the user id
