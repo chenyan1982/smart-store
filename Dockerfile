@@ -67,11 +67,11 @@ VOLUME /home/${DOCKER_USER}
 
 EXPOSE ${APP_PORT}
 
-COPY package.json npm-shrinkwrap.json /home/${DOCKER_USER}/${APP_DIR}/
+COPY package.json npm-shrinkwrap.json /home/app/
 RUN chown -R app:app /home/*
 
 USER app
-WORKDIR /home/${DOCKER_USER}/${APP_DIR}
+WORKDIR /home/app
 RUN npm install
 
 
