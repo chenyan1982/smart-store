@@ -61,20 +61,46 @@ RUN ./configure \
 RUN echo "root:${ROOT_USER_PASSWORD}" | chpasswd
 
 # Create new user called define by DOCKER_USER environment variable
-RUN useradd --user-group --create-home --shell /bin/false inlay
+RUN adduser --disabled-password --shell /bin/bash --gecos '' ${DOCKER_USER}
+
+# Add user defined by DOCKER_USER environment variable to the sudoers list
+RUN adduser ${DOCKER_USER} sudo
+
+# Set the work directory to home dir of the root
+WORKDIR /home/${DOCKER_USER}
 
 VOLUME /home/${DOCKER_USER}
 
 EXPOSE ${APP_PORT}
 
-COPY package.json npm-shrinkwrap.json /home/inlay/
-RUN chown -R inlay:inlay /home/*
 
-USER inlay
-WORKDIR /home/inlay
+COPY package.json /package.json
+COPY npm-shrinkwrap.json /npm-shrinkwrap.json
+
+RUN chmod +x /package.json
+RUN chmod +x /npm-shrinkwrap.json
+
+# Set the user id
+USER ${DOCKER_USER}
+
 RUN npm install
 
 
+=======
+# Set the work directory to home dir of the root
+WORKDIR /home/${DOCKER_USER}/${APP_DIR}
+
+# Set the user id
+USER ${DOCKER_USER}
+>>>>>>> parent of 55fadb9... docker build issue
+
+COPY . /home/${DOCKER_USER}/${APP_DIR}
+
+# RUN chmod -rwxr-xr-x /home/${DOCKER_USER}/${APP_DIR}
+
+
+
+RUN npm install
 
 
 
