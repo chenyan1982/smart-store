@@ -61,16 +61,13 @@ RUN ./configure \
 RUN echo "root:${ROOT_USER_PASSWORD}" | chpasswd
 
 # Create new user called define by DOCKER_USER environment variable
-RUN adduser --disabled-password --shell /bin/bash --gecos '' ${DOCKER_USER}
-
-# Add user defined by DOCKER_USER environment variable to the sudoers list
-RUN adduser ${DOCKER_USER} sudo
+RUN useradd --user-group --create-home --shell /bin/false ${DOCKER_USER}
 
 VOLUME /home/${DOCKER_USER}
 
 EXPOSE ${APP_PORT}
 
-COPY . /home/${DOCKER_USER}/${APP_DIR}
+COPY package.json npm-shrinkwrap.json $HOME/${DOCKER_USER}/${APP_DIR}
 
 RUN chown -R ${DOCKER_USER}:${DOCKER_USER} /home/*
 
