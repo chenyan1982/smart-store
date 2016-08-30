@@ -53,7 +53,7 @@ RUN ./configure \
 RUN echo "root:${ROOT_USER_PASSWORD}" | chpasswd
 
 # Create new user
-RUN useradd app -m
+RUN useradd --user-group --create-home --shell /bin/false app
 
 # Set the work directory to home dir of the root
 WORKDIR /home/app
