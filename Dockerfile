@@ -16,12 +16,15 @@ MAINTAINER Calvin.Chen
 ENV APP_DIR /app
 
 # Password for the root
+ENV DOCKER_USER=inlay
+
+# Password for the root
 ENV ROOT_USER_PASSWORD=root
 
 # service port
 ENV APP_PORT 3000
 
-ENV HOME=/home/app
+ENV HOME=/home/inlay
 
 ###############################################################################
 #                                Instructions                                 #
@@ -55,13 +58,13 @@ RUN ./configure \
 RUN echo "root:${ROOT_USER_PASSWORD}" | chpasswd
 
 # Create new user
-RUN useradd --user-group --create-home --shell /bin/false app
+RUN useradd --user-group --create-home --shell /bin/false inlay
 
 COPY package.json npm-shrinkwrap.json $HOME/
-RUN chown -R app:app $HOME/*
+RUN chown -R inlay:inlay $HOME/*
 
 # Set the user id
-USER app
+USER inlay
 
 WORKDIR $HOME/
 RUN npm install
