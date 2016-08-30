@@ -80,9 +80,9 @@ COPY package.json /package.json
 
 COPY npm-shrinkwrap.json /npm-shrinkwrap.json
 
-RUN chmod +x /package.json
+RUN sudo chmod +x /package.json
 
-RUN chmod +x /npm-shrinkwrap.json
+RUN sudo chmod +x /npm-shrinkwrap.json
 
 
 
