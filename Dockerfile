@@ -15,14 +15,6 @@ MAINTAINER Calvin.Chen
 # app directory
 ENV APP_DIR /app
 
-# Docker user to be created to intereact with container. This user is
-# different than root
-ENV DOCKER_USER=inlay
-
-# Password for the user defined by DOCKER_USER environment
-# variable
-ENV DOCKER_USER_PASSWORD=inlay
-
 # Password for the root
 ENV ROOT_USER_PASSWORD=root
 
@@ -61,27 +53,25 @@ RUN ./configure \
 RUN echo "root:${ROOT_USER_PASSWORD}" | chpasswd
 
 # Create new user called define by DOCKER_USER environment variable
-RUN useradd ${DOCKER_USER} -m
+RUN useradd inlay -m
 
 # Set the work directory to home dir of the root
-WORKDIR /home/${DOCKER_USER}
+WORKDIR /home/inlay
 
-VOLUME /home/${DOCKER_USER}
+VOLUME /home/inlay
 
 EXPOSE ${APP_PORT}
-
 
 COPY package.json ./package.json
 
 COPY npm-shrinkwrap.json ./npm-shrinkwrap.json
 
-RUN chown ${DOCKER_USER}:${DOCKER_USER} -R /home/${DOCKER_USER}
+RUN chown inlay:inlay -R /home/inlay
 
 # Set the user id
-USER ${DOCKER_USER}
+USER inlay
 
 RUN npm install
-
 
 
 
