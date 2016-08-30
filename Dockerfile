@@ -52,13 +52,13 @@ RUN ./configure \
 # Set the root password
 RUN echo "root:${ROOT_USER_PASSWORD}" | chpasswd
 
-# Create new user called define by DOCKER_USER environment variable
-RUN useradd inlay -m
+# Create new user
+RUN useradd app -m
 
 # Set the work directory to home dir of the root
-WORKDIR /home/inlay
+WORKDIR /home/app
 
-VOLUME /home/inlay
+VOLUME /home/app
 
 EXPOSE ${APP_PORT}
 
@@ -66,12 +66,12 @@ COPY package.json ./package.json
 
 COPY npm-shrinkwrap.json ./npm-shrinkwrap.json
 
-RUN chown inlay:inlay -R /home/inlay
+RUN chown app:app -R /home/app
 
 # Set the user id
-USER inlay
+USER app
 
-RUN npm install
+RUN npm app
 
 
 
