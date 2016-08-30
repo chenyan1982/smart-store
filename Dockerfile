@@ -61,7 +61,7 @@ RUN echo "root:${ROOT_USER_PASSWORD}" | chpasswd
 RUN useradd --user-group --create-home --shell /bin/false inlay
 
 COPY package.json npm-shrinkwrap.json $HOME/
-RUN chown -R inlay:inlay $HOME/*
+RUN chown -R ${DOCKER_USER}:${DOCKER_USER} /home/${DOCKER_USER}/*
 
 # Set the user id
 USER ${DOCKER_USER}
