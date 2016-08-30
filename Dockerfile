@@ -17,7 +17,7 @@ ENV APP_DIR /app
 
 # Docker user to be created to intereact with container. This user is
 # different than root
-ENV DOCKER_USER=app
+ENV DOCKER_USER=inlay
 
 # Password for the user defined by DOCKER_USER environment
 # variable
@@ -61,10 +61,7 @@ RUN ./configure \
 RUN echo "root:${ROOT_USER_PASSWORD}" | chpasswd
 
 # Create new user called define by DOCKER_USER environment variable
-RUN adduser --disabled-password --shell /bin/bash --gecos '' ${DOCKER_USER}
-
-# Add user defined by DOCKER_USER environment variable to the sudoers list
-RUN adduser ${DOCKER_USER} sudo
+RUN useradd ${DOCKER_USER} -m
 
 # Set the work directory to home dir of the root
 WORKDIR /home/${DOCKER_USER}
@@ -73,20 +70,20 @@ VOLUME /home/${DOCKER_USER}
 
 EXPOSE ${APP_PORT}
 
+
+COPY package.json ./package.json
+
+COPY npm-shrinkwrap.json ./npm-shrinkwrap.json
+
+RUN chown ${DOCKER_USER}:${DOCKER_USER} -R /home/${DOCKER_USER}
+
 # Set the user id
 USER ${DOCKER_USER}
 
-COPY package.json /package.json
-
-COPY npm-shrinkwrap.json /npm-shrinkwrap.json
-
-RUN sudo chmod +x /package.json
-
-RUN sudo chmod +x /npm-shrinkwrap.json
-
-
-
 RUN npm install
+
+
+
 
 
 
