@@ -64,7 +64,7 @@ COPY package.json npm-shrinkwrap.json $HOME/
 RUN chown -R inlay:inlay $HOME/*
 
 # Set the user id
-USER inlay
+USER ${DOCKER_USER}
 
 WORKDIR /home/${DOCKER_USER}
 RUN npm install
