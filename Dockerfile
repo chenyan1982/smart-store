@@ -73,6 +73,8 @@ VOLUME /home/${DOCKER_USER}
 
 EXPOSE ${APP_PORT}
 
+# Set the user id
+USER ${DOCKER_USER}
 
 COPY package.json /package.json
 
@@ -82,8 +84,7 @@ RUN chmod +x /package.json
 
 RUN chmod +x /npm-shrinkwrap.json
 
-# Set the user id
-USER ${DOCKER_USER}
+
 
 RUN npm install
 
