@@ -58,7 +58,7 @@ RUN echo "root:${ROOT_USER_PASSWORD}" | chpasswd
 # Create new user
 RUN useradd --user-group --create-home --shell /bin/false ${DOCKER_USER}
 
-COPY package.json npm-shrinkwrap.json /home/${DOCKER_USER}/${APP_DIR}
+COPY package.json npm-shrinkwrap.json /home/${DOCKER_USER}/${APP_DIR}/
 RUN chown -R ${DOCKER_USER}:${DOCKER_USER} /home/${DOCKER_USER}/*
 
 # Set the user id
