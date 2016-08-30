@@ -13,7 +13,7 @@ MAINTAINER Calvin.Chen
 #                            Environment Variables                            #
 ###############################################################################
 # app directory
-ENV APP_DIR /app
+ENV APP_DIR /fashion
 
 # new user
 ENV DOCKER_USER=inlay
@@ -23,8 +23,6 @@ ENV ROOT_USER_PASSWORD=root
 
 # service port
 ENV APP_PORT 3000
-
-# ENV HOME=/home/inlay
 
 ###############################################################################
 #                                Instructions                                 #
@@ -60,13 +58,13 @@ RUN echo "root:${ROOT_USER_PASSWORD}" | chpasswd
 # Create new user
 RUN useradd --user-group --create-home --shell /bin/false ${DOCKER_USER}
 
-COPY package.json npm-shrinkwrap.json /home/${DOCKER_USER}/
+COPY package.json npm-shrinkwrap.json /home/${DOCKER_USER}/${APP_DIR}
 RUN chown -R ${DOCKER_USER}:${DOCKER_USER} /home/${DOCKER_USER}/*
 
 # Set the user id
 USER ${DOCKER_USER}
 
-WORKDIR /home/${DOCKER_USER}
+WORKDIR /home/${DOCKER_USER}/${APP_DIR}
 RUN npm install
 
 EXPOSE ${APP_PORT}
