@@ -15,7 +15,7 @@ MAINTAINER Calvin.Chen
 # app directory
 ENV APP_DIR /app
 
-# Password for the root
+# new user
 ENV DOCKER_USER=inlay
 
 # Password for the root
@@ -66,7 +66,7 @@ RUN chown -R inlay:inlay $HOME/*
 # Set the user id
 USER inlay
 
-WORKDIR $HOME/
+WORKDIR /home/${DOCKER_USER}
 RUN npm install
 
 EXPOSE ${APP_PORT}
