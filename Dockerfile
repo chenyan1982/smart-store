@@ -17,7 +17,7 @@ ENV APP_DIR /app
 
 # Docker user to be created to intereact with container. This user is
 # different than root
-ENV DOCKER_USER=inlay
+ENV DOCKER_USER=app
 
 # Password for the user defined by DOCKER_USER environment
 # variable
