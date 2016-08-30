@@ -71,7 +71,7 @@ RUN chown app:app -R /home/app
 # Set the user id
 USER app
 
-RUN npm app
+RUN npm install
 
 
 
