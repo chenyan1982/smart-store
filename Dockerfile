@@ -21,6 +21,8 @@ ENV ROOT_USER_PASSWORD=root
 # service port
 ENV APP_PORT 3000
 
+ENV HOME=/home/app
+
 ###############################################################################
 #                                Instructions                                 #
 ###############################################################################
@@ -55,26 +57,16 @@ RUN echo "root:${ROOT_USER_PASSWORD}" | chpasswd
 # Create new user
 RUN useradd --user-group --create-home --shell /bin/false app
 
-# Set the work directory to home dir of the root
-WORKDIR /home/app
-
-VOLUME /home/app
-
-EXPOSE ${APP_PORT}
-
-COPY package.json ./package.json
-
-COPY npm-shrinkwrap.json ./npm-shrinkwrap.json
-
-RUN chown app:app -R /home/app
+COPY package.json npm-shrinkwrap.json $HOME/
+RUN chown -R app:app $HOME/*
 
 # Set the user id
 USER app
 
+WORKDIR $HOME/
 RUN npm install
 
-
-
+EXPOSE ${APP_PORT}
 
 
 ###############################################################################
